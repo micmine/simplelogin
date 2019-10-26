@@ -1,26 +1,8 @@
 <?php
 include "util/Db.php";
-function console_log($data) {
-    $bt = debug_backtrace();
-    $caller = array_shift($bt);
-
-    if (is_array($data))
-        $dataPart = implode(',', $data);
-    else
-        $dataPart = $data;
-
-    $toSplit = $caller['file'] . ':' . $caller['line'] . ' => ' . $dataPart;
-    error_log($toSplit);
-
-    error_log(end(split('/', $toSplit)));
-}
-
 
 function verifyPasswordHash($username, $password) {
     $conn = connectDb();
-    //$prepared_query = stripslashes($query);
-    //$prepared_query = mysqli_real_escape_string($conn, $prepared_query);
-    //error_log($prepared_query);
 
     $uid = "";
     $password = mysqli_real_escape_string($conn, trim($password));
