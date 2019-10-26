@@ -1,32 +1,29 @@
 <?php
-include "util/db.php";
+include "util/DbHelp.php";
+//include "util/header.php";
 
 $username = $_POST["username"];
-$password = mysqli_real_escape_string($con, $_POST["password"]);
-//$hash = password_hash($_POST["password"], PASSWORD_DEFAULT);
+$password = trim($_POST["password"]);
 
-$res = mysqli_query($con, "select password, isdeactivated from user where username = '" . $username . "';");
-$data = mysqli_fetch_array($res);
-//$data = $res
+// validate input
+//prontebl
 
-$hash = $data["password"];
-$isdeactivated = $data["isdeactivated"];
+// read from database
+$uid = verifyPasswordHash($username, $password);
+if (isset($uid) && $uid != "") {
+    // if session exist -> logout
+    if (isset($_SESSION)) {
+      session_destroy();
+    }
 
-if ($res == false) {
-  echo mysqli_error($con);
-  //header("Location: index.php?info=3");
-}
-if (!$isdeactivated) {
-  // user is not deactivated
-  if (password_verify($password, $hash)) {
-    // password is correct
-    $_SESSION["active"] = 1;
+    // start new session
+    session_start();
+    $_SESSION = array();
+
+    $_SESSION["loggedin"] = true;
+    $_SESSION["uid"] = $uid;
     header("Location: dashboard.php");
-  } else {
-    //header("Location: index.php?info=1");
-
-  }
 } else {
-  header("Location: index.php?info=2");
+    header("Location: index.php?info=1");
 }
 ?>

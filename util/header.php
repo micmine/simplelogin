@@ -1,9 +1,11 @@
 <?php
+
 session_start();
-if (!isset($_SESSION["active"])) {
-   header("Location: http://localhost/m133/login");
-  die();
+if (isset($_SESSION) && $_SESSION["uid"] != "") {
+  // successful logged in user
 } else {
-  header("Location: dashboard.php");
+  header ("Location: index.php");
+  exit;
 }
+
 ?>
