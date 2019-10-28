@@ -1,6 +1,5 @@
 <?php
-include "util/DbHelp.php";
-//include "util/header.php";
+include "util/UserDatabase.php";
 
 $username = $_POST["username"];
 $password = trim($_POST["password"]);

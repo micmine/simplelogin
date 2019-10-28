@@ -1,6 +1,6 @@
 <?php
-include "util/header.php";
-//include "util/DbHelp.php"
+include "util/Header.php";
+include "util/UserDatabase.php"
 
 ?>
 <!DOCTYPE html>
@@ -12,7 +12,8 @@ include "util/header.php";
   <body>
     <h1>Here is the side</h1>
     <?php
-    echo "<p>Hello " . $_SESSION["uid"] . "</p>";
+    $name = getName($_SESSION["uid"]);
+    echo "<p>Hello " . $name . "</p>";
     echo "<a href=\"logout.php\">Logout</a>";
     ?>
   </body>
