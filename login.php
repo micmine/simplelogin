@@ -2,11 +2,20 @@
 include "util/UserDatabase.php";
 include "util/OnlyPost.php";
 
-$username = $_POST["username"];
+$username = trim($_POST["username"]);
 $password = trim($_POST["password"]);
 
 // validate input
-//prontebl
+if (!preg_match("/[^A-Za-z0-9.]/", $username)) {
+  // invalid input
+  header("Location: index.php?info=2");
+  die();
+}
+if (!preg_match("/[^A-Za-z0-9.]/", $password)) {
+  // invalid input
+  header("Location: index.php?info=2");
+  die();
+}
 
 // read from database
 $uid = verifyPasswordHash($username, $password);
@@ -23,7 +32,10 @@ if (isset($uid) && $uid != "") {
     $_SESSION["loggedin"] = true;
     $_SESSION["uid"] = $uid;
     header("Location: dashboard.php");
+    die();
 } else {
+    // Username ore password is wrong
     header("Location: index.php?info=1");
+    die();
 }
 ?>
