@@ -1,5 +1,6 @@
 <?php
 include "util/UserDatabase.php";
+include "util/OnlyPost.php";
 
 $username = $_POST["username"];
 $password = trim($_POST["password"]);

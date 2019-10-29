@@ -1,7 +1,7 @@
 <?php
 include "util/Header.php";
-include "util/UserDatabase.php"
-
+include "util/OnlyGet.php";
+include "util/UserDatabase.php";
 ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">

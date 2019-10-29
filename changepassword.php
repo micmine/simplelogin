@@ -1,3 +1,7 @@
+<?
+include "util/Header.php";
+include "util/OnlyGet.php";
+?>
 <form class="login" action="login.php" method="post">
   <input type="password" name="oldpassword" placeholder="oldpassword"><br>
   <input type="password" name="newpassword" placeholder="newpassword"><br>
