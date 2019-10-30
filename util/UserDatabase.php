@@ -48,7 +48,6 @@ function getName($uid) {
 }
 
 function setPassword($uid, $oldpassword, $newpassword) { 
-
     $uid = verifyPasswordHash(getName($uid), $oldpassword);
     if (isset($uid) && $uid != "") {
         $conn = connectDb();
@@ -56,7 +55,7 @@ function setPassword($uid, $oldpassword, $newpassword) {
         $newpassword = mysqli_real_escape_string($conn, trim($newpassword));
         $uid = mysqli_real_escape_string($conn, trim($uid));
 
-        $hash = password_hash($uid, PASSWORD_DEFAULT);
+        $hash = password_hash($newpassword, PASSWORD_DEFAULT);
 
         $query = "update user set password = '$hash' where uid = '$uid'";
         if(!mysqli_query($conn, $query)){ 
@@ -65,6 +64,7 @@ function setPassword($uid, $oldpassword, $newpassword) {
 
         disconnectDb($conn);
     }
+    return $uid;
 }
 
 function isExpired($uid) {
