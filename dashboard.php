@@ -15,6 +15,7 @@ include "util/UserDatabase.php";
     $name = getName($_SESSION["uid"]);
     echo "<p>Hello " . $name . "</p>";
     echo "<a href=\"logout.php\">Logout</a>";
+    echo "<br>";
     ?>
   </body>
 </html>

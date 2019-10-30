@@ -29,7 +29,6 @@ function verifyPasswordHash($username, $password) {
 
 function getName($uid) { 
     $conn = connectDb();
-
     $name = "";
 
     $uid = mysqli_real_escape_string($conn, trim($uid));
@@ -65,6 +64,31 @@ function setPassword($uid, $oldpassword, $newpassword) {
         }
 
         disconnectDb($conn);
+    }
+}
+
+function isExpired($uid) {
+    $now = date("Y-m-d");
+
+    $conn = connectDb();
+    $expirationdate = "";
+
+    $uid = mysqli_real_escape_string($conn, trim($uid));
+    $query = "select expirationdate from user where uid = '$uid'";
+    if ($result = mysqli_query($conn, $query)) {
+
+        /* fetch associative array */
+        while ($data = mysqli_fetch_assoc($result)) {
+            $expirationdate = $data["expirationdate"];
+        }
+    
+        mysqli_free_result($result);
+    }
+    disconnectDb($conn);
+    if ($now > $expirationdate) {
+        return false;
+    } else {
+        return true;
     }
 }
 

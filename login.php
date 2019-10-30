@@ -6,6 +6,7 @@ $username = trim($_POST["username"]);
 $password = trim($_POST["password"]);
 
 // validate input
+/*
 if (!preg_match("/[^A-Za-z0-9.]/", $username)) {
   // invalid input
   header("Location: index.php?info=2");
@@ -15,11 +16,12 @@ if (!preg_match("/[^A-Za-z0-9.]/", $password)) {
   // invalid input
   header("Location: index.php?info=2");
   die();
-}
+}*/
 
 // read from database
 $uid = verifyPasswordHash($username, $password);
 if (isset($uid) && $uid != "") {
+  if (!isExpired($_SESSION["uid"])) {
     // if session exist -> logout
     if (isset($_SESSION)) {
       session_destroy();
@@ -33,6 +35,11 @@ if (isset($uid) && $uid != "") {
     $_SESSION["uid"] = $uid;
     header("Location: dashboard.php");
     die();
+  } else {
+    // User is expired
+    header("Location: index.php?info=3");
+    die();
+  }
 } else {
     // Username ore password is wrong
     header("Location: index.php?info=1");
