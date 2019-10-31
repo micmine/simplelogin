@@ -1,6 +1,6 @@
 <?php
-include "util/UserDatabase.php";
-include "util/OnlyPost.php";
+include "db/UserDatabase.php";
+include "OnlyPost.php";
 
 $username = trim($_POST["username"]);
 $password = trim($_POST["password"]);
@@ -33,16 +33,16 @@ if (isset($uid) && $uid != "") {
 
     $_SESSION["loggedin"] = true;
     $_SESSION["uid"] = $uid;
-    header("Location: dashboard.php");
+    header("Location: ../dashboard.php");
     die();
   } else {
     // User is expired
-    header("Location: index.php?info=3");
+    header("Location: ../index.php?info=3");
     die();
   }
 } else {
     // Username ore password is wrong
-    header("Location: index.php?info=1");
+    header("Location: ../index.php?info=1");
     die();
 }
 ?>

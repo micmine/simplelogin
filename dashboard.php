@@ -1,7 +1,7 @@
 <?php
 include "util/Header.php";
 include "util/OnlyGet.php";
-include "util/UserDatabase.php";
+include "util/db/UserDatabase.php";
 ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
@@ -14,7 +14,7 @@ include "util/UserDatabase.php";
     <?php
     $name = getName($_SESSION["uid"]);
     echo "<p>Hello " . $name . "</p>";
-    echo "<a href=\"logout.php\">Logout</a>";
+    echo "<a href=\"util/logout.php\">Logout</a>";
     echo "<br>";
     ?>
   </body>
