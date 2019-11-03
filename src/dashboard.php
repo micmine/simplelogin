@@ -1,6 +1,6 @@
-<?php
+<?
 include "util/Header.php";
-include "util/OnlyGet.php";
+include "util/restrict/OnlyGet.php";
 include "util/db/UserDatabase.php";
 ?>
 <!DOCTYPE html>
@@ -14,7 +14,7 @@ include "util/db/UserDatabase.php";
     <?php
     $name = getName($_SESSION["uid"]);
     echo "<p>Hello " . $name . "</p>";
-    echo "<a href=\"util/logout.php\">Logout</a>";
+    echo "<a href=\"util/session/Logout.php\">Logout</a>";
     echo "<br>";
     ?>
   </body>

@@ -1,19 +1,20 @@
-<?php
-include "db/UserDatabase.php";
-include "OnlyPost.php";
+<?
+include "../db/UserDatabase.php";
+include "../restrict/OnlyPost.php";
+include "../validate/UserInput.php";
 
 $username = trim($_POST["username"]);
 $password = trim($_POST["password"]);
 
 // validate input
-if (!preg_match ('/[a-zA-Z0-9 ]/', $username)) {
+if (validateUsername($username)) {
   // invalid input
-  header("Location: ../index.php?info=1");
+  header("Location: ../../index.php?info=1");
   die();
 }
-if (!preg_match('/[a-zA-Z0-9 ]/', $password)) {
+if (validatePassword($password)) {
   // invalid input
-  header("Location: ../index.php?info=1");
+  header("Location: ../../index.php?info=1");
   die();
 }
 
@@ -32,16 +33,16 @@ if (isset($uid) && $uid != "") {
 
     $_SESSION["loggedin"] = true;
     $_SESSION["uid"] = $uid;
-    header("Location: ../dashboard.php");
+    header("Location: ../../dashboard.php");
     die();
   } else {
     // user is expired
-    header("Location: ../index.php?info=3");
+    header("Location: ../../index.php?info=3");
     die();
   }
 } else {
     // username ore password is wrong
-    header("Location: ../index.php?info=2");
+    header("Location: ../../index.php?info=2");
     die();
 }
 ?>

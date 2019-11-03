@@ -1,6 +1,6 @@
 <?
-include "Header.php";
-include "OnlyGet.php";
+include "util/Header.php";
+include "util/restrict/OnlyGet.php";
 ?>
 <form class="login" action="login.php" method="post">
   <input type="password" name="oldpassword" placeholder="oldpassword"><br>
