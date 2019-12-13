@@ -5,7 +5,8 @@ function verifyPasswordHash($username, $password) {
     $conn = connectDb();
 
     $uid = "";
-    $password = mysqli_real_escape_string($conn, trim($password));
+    $password = mysqli_real_escape_string($conn, trim(htmlentities($password)));
+    $username = mysqli_real_escape_string($conn, trim(htmlentities($username)));
     $query = "select uid, password from user where username = '$username' and isdeactivated = 0";
     if ($result = mysqli_query($conn, $query)) {
         $count = 0;
@@ -31,7 +32,7 @@ function getName($uid) {
     $conn = connectDb();
     $name = "";
 
-    $uid = mysqli_real_escape_string($conn, trim($uid));
+    $uid = mysqli_real_escape_string($conn, trim(htmlentities($uid)));
     $query = "select username from user where uid = '$uid'";
     if ($result = mysqli_query($conn, $query)) {
 
@@ -47,13 +48,14 @@ function getName($uid) {
     return $name;
 }
 
-function setPassword($uid, $oldpassword, $newpassword) { 
+function setPassword($uid, $oldpassword, $newpassword) {
+    $oldpassword = mysqli_real_escape_string($conn, trim(htmlentities($oldpassword)));
     $uid = verifyPasswordHash(getName($uid), $oldpassword);
     if (isset($uid) && $uid != "") {
         $conn = connectDb();
 
-        $newpassword = mysqli_real_escape_string($conn, trim($newpassword));
-        $uid = mysqli_real_escape_string($conn, trim($uid));
+        $newpassword = mysqli_real_escape_string($conn, trim(htmlentities($newpassword)));
+        $uid = mysqli_real_escape_string($conn, trim(htmlentities($uid)));
 
         $hash = password_hash($newpassword, PASSWORD_DEFAULT);
 
@@ -73,7 +75,7 @@ function isExpired($uid) {
     $conn = connectDb();
     $expirationdate = "";
 
-    $uid = mysqli_real_escape_string($conn, trim($uid));
+    $uid = mysqli_real_escape_string($conn, trim(htmlentities($uid)));
     $query = "select expirationdate from user where uid = '$uid'";
     if ($result = mysqli_query($conn, $query)) {
 
