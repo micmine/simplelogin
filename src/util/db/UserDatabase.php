@@ -1,4 +1,4 @@
-<?
+<?php
 require "Db.php";
 
 function verifyPasswordHash($username, $password) {

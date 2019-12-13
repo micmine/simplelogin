@@ -1,4 +1,4 @@
-<?
+<?php
 //uncoment if database u are testing database connection
 //include 'util/db/Db.php';
 require "util/restrict/OnlyGet.php";

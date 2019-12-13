@@ -1,4 +1,4 @@
-<?
+<?php
 session_start();
 
     // if session exist -> logout

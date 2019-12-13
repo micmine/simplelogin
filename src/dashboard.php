@@ -1,4 +1,4 @@
-<?
+<?php
 require "util/Header.php";
 require "util/restrict/OnlyGet.php";
 require "util/db/UserDatabase.php";

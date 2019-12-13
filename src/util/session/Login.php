@@ -1,4 +1,4 @@
-<?
+<?php
 require "../db/UserDatabase.php";
 require "../restrict/OnlyPost.php";
 require "../validate/UserInput.php";

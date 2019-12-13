@@ -1,4 +1,4 @@
-<?
+<?php
 function connectDb() {
     $conn = new mysqli("localhost", "login", "1234", "login");
 
