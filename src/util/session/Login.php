@@ -1,7 +1,7 @@
 <?
-include "../db/UserDatabase.php";
-include "../restrict/OnlyPost.php";
-include "../validate/UserInput.php";
+require "../db/UserDatabase.php";
+require "../restrict/OnlyPost.php";
+require "../validate/UserInput.php";
 
 $username = trim($_POST["username"]);
 $password = trim($_POST["password"]);

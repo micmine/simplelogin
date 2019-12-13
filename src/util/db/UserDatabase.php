@@ -1,5 +1,5 @@
 <?
-include "Db.php";
+require "Db.php";
 
 function verifyPasswordHash($username, $password) {
     $conn = connectDb();

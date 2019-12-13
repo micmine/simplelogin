@@ -1,7 +1,7 @@
 <?
-include "util/Header.php";
-include "util/restrict/OnlyGet.php";
-include "util/db/UserDatabase.php";
+require "util/Header.php";
+require "util/restrict/OnlyGet.php";
+require "util/db/UserDatabase.php";
 ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
