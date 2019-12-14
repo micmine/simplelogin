@@ -1,6 +1,19 @@
 <?php
 require "Db.php";
 
+function add($username, $password) {
+    $conn = connectDb();
+    $username = mysqli_real_escape_string($conn, trim(htmlentities($username)));
+    $hash = password_hash(mysqli_real_escape_string($conn, trim(htmlentities($password))), PASSWORD_DEFAULT);
+    $date = "9999-12-1";
+    $query = "insert into user (username, password, expirationdate) values ('$username', '$hash', '$date')";
+    if ($conn->query($query) === TRUE) {
+    } else {
+        error_log($conn->error);
+    }
+    disconnectDb($conn);
+}
+
 function verifyPasswordHash($username, $password) {
     if (isset($username) && $username != "") {
         if (isset($password) && $password != "") {

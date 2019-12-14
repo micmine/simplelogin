@@ -12,5 +12,5 @@ create table user (
     isdeactivated boolean default '0',
     primary key (uid)
 );
-/* user:pw@rom */
+-- user:123
 insert into user (username, password, expirationdate) values ("user", "$2y$10$xjfIqbcgqOp9J0gh6CLKZuuuvaEfcAtJM3E5MMeVfz0I7SzywKVmO", "9999-12-1");
